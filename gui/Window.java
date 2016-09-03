@@ -16,7 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
-import data.Fetcher;
+import controller.Fetcher;
 
 
 public class Window implements Observer, ActionListener {

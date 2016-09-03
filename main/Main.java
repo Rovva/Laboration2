@@ -1,7 +1,8 @@
 package main;
 
 import gui.Window;
-import data.Fetcher;
+import controller.Control;
+import controller.Fetcher;
 
 public class Main {
 	public static void main(String[] args) {

@@ -1,12 +1,12 @@
-package data;
+package controller;
 
 import java.util.Observable;
 import java.util.Observer;
 
-class Fetcher implements Observer {
+public class Fetcher implements Observer {
 	
-	String cities;
-	double[] longitude, latitude;
+	String[] cities;
+	double[] altitude, longitude, latitude;
 	
 
 	public Fetcher(String file) {
