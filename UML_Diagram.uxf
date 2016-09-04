@@ -4,9 +4,9 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>330</x>
+      <x>340</x>
       <y>90</y>
-      <w>540</w>
+      <w>320</w>
       <h>300</h>
     </coordinates>
     <panel_attributes>model
@@ -17,10 +17,10 @@ bg=white</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>330</x>
+      <x>340</x>
       <y>480</y>
-      <w>140</w>
-      <h>70</h>
+      <w>220</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>view
 --
@@ -30,10 +30,10 @@ bg=white</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>610</x>
-      <y>440</y>
-      <w>140</w>
-      <h>70</h>
+      <x>680</x>
+      <y>90</y>
+      <w>280</w>
+      <h>300</h>
     </coordinates>
     <panel_attributes>controller
 --
@@ -43,34 +43,21 @@ bg=white</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
+      <x>360</x>
       <y>130</y>
-      <w>180</w>
-      <h>140</h>
+      <w>280</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Fetcher
 --
 -time, cache_time: int
 -time_from, time_to: string
--altitude, latitude, longitude
--min_temp, max_temp
+-altitude, latitude, longitude: double
+-min_temp, max_temp: double
 --
 setCurrentTime(time: int)
 getTime()
-fetchXML(string filepath,
-layer=1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>540</x>
-      <y>130</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>Datastorage
---
+fetchXML(string filepath, string time_from)
 
 layer=1</panel_attributes>
     <additional_attributes/>
@@ -78,7 +65,7 @@ layer=1</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>60</x>
+      <x>70</x>
       <y>90</y>
       <w>220</w>
       <h>120</h>
@@ -90,6 +77,64 @@ altitude, latitude, longitude
 min_temp, max_temp
 
 bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>360</x>
+      <y>520</y>
+      <w>180</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Window
+--
+
+--
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>780</x>
+      <y>540</y>
+      <w>120</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>main
+--
+bg=white
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>790</x>
+      <y>570</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Main
+layer=1
+group=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>700</x>
+      <y>130</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>EventHandler
+--
+
+--
++Eventhandler()
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
