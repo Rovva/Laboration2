@@ -1,11 +1,13 @@
 package main;
 
 import gui.Window;
-import controller.Control;
-import controller.Fetcher;
+import controller.EventHandler;
+import data.Fetcher;
 
 public class Main {
 	public static void main(String[] args) {
-		Window ruta = new Window();
+		Fetcher fetcher = new Fetcher("./places.xml");
+		EventHandler control = new EventHandler();
+		Window window = new Window();
 	}
 }

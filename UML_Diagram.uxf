@@ -4,62 +4,67 @@
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>340</x>
-      <y>90</y>
-      <w>320</w>
-      <h>300</h>
+      <x>380</x>
+      <y>140</y>
+      <w>610</w>
+      <h>540</h>
     </coordinates>
-    <panel_attributes>model
+    <panel_attributes>data
 --
-bg=white</panel_attributes>
+bg=white
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>340</x>
-      <y>480</y>
-      <w>220</w>
-      <h>200</h>
+      <x>70</x>
+      <y>470</y>
+      <w>280</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>view
 --
-bg=white</panel_attributes>
+bg=white
+layer=1
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>680</x>
-      <y>90</y>
-      <w>280</w>
+      <x>1000</x>
+      <y>130</y>
+      <w>320</w>
       <h>300</h>
     </coordinates>
     <panel_attributes>controller
 --
-bg=white</panel_attributes>
+bg=white
+group=2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>130</y>
+      <x>390</x>
+      <y>170</y>
       <w>280</w>
       <h>200</h>
     </coordinates>
     <panel_attributes>Fetcher
 --
+-currentState: string
 -time, cache_time: int
 -time_from, time_to: string
 -altitude, latitude, longitude: double
 -min_temp, max_temp: double
---
-setCurrentTime(time: int)
-getTime()
-fetchXML(string filepath, string time_from)
 
-layer=1</panel_attributes>
+--
+fetchXML(string time_from)
+changeState()
+layer=1
+group=3</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -82,25 +87,33 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>520</y>
-      <w>180</w>
-      <h>130</h>
+      <x>90</x>
+      <y>510</y>
+      <w>190</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>Window
 --
-
+city: JComboBox
+hour: JComboBox
+select: JButton
+date, time: JLabel
+minTemp, maxTemp: JLabel
 --
-layer=1</panel_attributes>
+setCities(): void
+setHours(): void
+update()
+layer=2
+group=4</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>780</x>
-      <y>540</y>
-      <w>120</w>
-      <h>80</h>
+      <x>1080</x>
+      <y>550</y>
+      <w>230</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>main
 --
@@ -111,12 +124,15 @@ group=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>790</x>
-      <y>570</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1090</x>
+      <y>580</y>
+      <w>210</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Main
+--
+_+main()_
+
 layer=1
 group=1</panel_attributes>
     <additional_attributes/>
@@ -124,17 +140,69 @@ group=1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>700</x>
-      <y>130</y>
-      <w>100</w>
-      <h>30</h>
+      <x>1020</x>
+      <y>170</y>
+      <w>280</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>EventHandler
 --
 
 --
 +Eventhandler()
-</panel_attributes>
+
+layer=1
+group=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>390</x>
+      <y>380</y>
+      <w>240</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>PlaceFetcher
+--
+file: File
+filepath: String
+cities: ArrayList
+altitude: ArrayList
+latitude: ArrayList
+longitude: ArrayList
+placesDoc: Document
+--
+PlaceFetcher(file: String): void
+updateFilePath(file: String): void
+updateCities(): void
+getCityPlace(city: String): double[]
+clearCities(): void
+
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>380</y>
+      <w>280</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>WeatherFetcher
+--
+cacheTime, fetchTime: int
+weatherDoc: Document
+
+--
+WeatherFetcher(): void
+fetchWeatherXML(lon, lat, alt: double): void
+setCacheTime(time: int): void
+getCacheTime(): int
+setFetchTime(time: int): void
+getFetchTime(): int
+layer=1</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

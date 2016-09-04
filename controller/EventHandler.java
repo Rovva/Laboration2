@@ -1,10 +1,10 @@
 package controller;
 
-public class Control {
+public class EventHandler implements Observer {
 	
 	private boolean start;
 	
-	public Control() {
+	public EventHandler() {
 		start = false;
 	}
 	

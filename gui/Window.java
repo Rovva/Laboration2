@@ -8,7 +8,6 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
-import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
@@ -16,7 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
-import controller.Fetcher;
+import data.Fetcher;
 
 
 public class Window implements Observer, ActionListener {
