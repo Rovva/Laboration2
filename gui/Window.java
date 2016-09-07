@@ -38,8 +38,12 @@ public class Window implements Observer, ActionListener {
 	private JLabel temperature_label = new JLabel("Temperatur:");
 	private JLabel temperature = new JLabel();
 	
+	private Fetcher fet;
 	
-	public Window() {
+	public Window(Fetcher fet) {
+		
+		this.fet = fet;
+		
 		JFrame frame = new JFrame("Weather");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(size_x, size_y);
