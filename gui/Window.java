@@ -23,7 +23,7 @@ import data.Fetcher;
 
 public class Window implements Observer, ActionListener {
 
-	int size_x = 500, size_y = 400;
+	int size_x = 360, size_y = 300;
 	private JLabel city_label = new JLabel("Välj stad:");
 	private JLabel hour_label = new JLabel("Välj timma:");
 	private JComboBox city_choose = new JComboBox();
