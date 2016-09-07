@@ -8,6 +8,7 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
@@ -29,7 +30,7 @@ public class Window implements Observer, ActionListener {
 	private JLabel current_date = new JLabel();
 	private JComboBox city_choose = new JComboBox();
 	private JComboBox hour_choose = new JComboBox();
-	private JLabel cache_label = new JLabel("Åldringstid:");
+	private JLabel cache_label = new JLabel("Åldringstid (minuter):");
 	private JComboBox cache = new JComboBox();
 	private JButton select = new JButton("Hämta");
 	private JLabel prognos_label = new JLabel("Prognos:");
@@ -40,10 +41,14 @@ public class Window implements Observer, ActionListener {
 	
 	private Fetcher fet;
 	
+	Date currentDate;
+	
 	public Window(Fetcher fet) {
 		
 		this.fet = fet;
 		fet.addObserver(this);
+		
+		String cities_temp[];
 		
 		JFrame frame = new JFrame("Weather");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,9 +74,16 @@ public class Window implements Observer, ActionListener {
 		contentPane.add(temperature_label);
 		contentPane.add(temperature);
 		
+		/*cities_temp = fet.getCityNames();
+		for(int i = 0; i < cities_temp.length; i++) {
+			city_choose.addItem(cities_temp[i]);
+		}*/
+		
 		city_choose.addItem("Skellefteå");
-		Date date = new Date();
-		current_date.setText(date.toString());
+		
+		updateHours();
+		updateHourChoose();
+		updateCacheTime();
 		
 		layout.putConstraint(SpringLayout.NORTH, city_label, 2, SpringLayout.NORTH, contentPane);
 		layout.putConstraint(SpringLayout.WEST, city_label, 2, SpringLayout.WEST, contentPane);
@@ -86,10 +98,10 @@ public class Window implements Observer, ActionListener {
 		layout.putConstraint(SpringLayout.WEST, hour_choose, 22, SpringLayout.EAST, city_choose);
 
 		layout.putConstraint(SpringLayout.NORTH, date_label, 2, SpringLayout.NORTH, contentPane);
-		layout.putConstraint(SpringLayout.WEST, date_label, 10, SpringLayout.EAST, hour_label);
+		layout.putConstraint(SpringLayout.WEST, date_label, 10, SpringLayout.EAST, hour_choose);
 		
-		layout.putConstraint(SpringLayout.NORTH, current_date, 2, SpringLayout.SOUTH, date_label);
-		layout.putConstraint(SpringLayout.WEST, current_date, 10, SpringLayout.EAST, hour_label);
+		layout.putConstraint(SpringLayout.NORTH, current_date, 8, SpringLayout.SOUTH, date_label);
+		layout.putConstraint(SpringLayout.WEST, current_date, 10, SpringLayout.EAST, hour_choose);
 
 		layout.putConstraint(SpringLayout.NORTH, cache_label, 2, SpringLayout.SOUTH, city_choose);
 		layout.putConstraint(SpringLayout.WEST, cache_label, 2, SpringLayout.WEST, contentPane);
@@ -117,6 +129,31 @@ public class Window implements Observer, ActionListener {
 		
 	}
 
+	void updateHours() {
+		Date cDate = new Date();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH':00:00'");
+		current_date.setText(ft.format(cDate));
+	}
+	
+	void updateHourChoose() {
+		Date date = new Date();
+		long milli = 0;
+		milli = date.getTime();
+		Date temp;
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH':00:00'");
+		for(int i = 0; i < 24; i++) {
+			temp = new Date(milli);
+			hour_choose.addItem(ft.format(temp));
+			milli = milli + 3600000;
+		}
+	}
+	
+	void updateCacheTime() {
+		for(int i = 1; i <= 60; i++) {
+			cache.addItem(Integer.toString(i));
+		}
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
