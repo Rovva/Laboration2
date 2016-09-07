@@ -12,14 +12,25 @@ public class Fetcher extends Observable {
 	String choosen_city, date;
 
 	public Fetcher() {
-		places = new PlaceFetcher(file);
+		places = new PlaceFetcher();
 		places.updatePlaces();
 		weather = new WeatherFetcher();
 	}
 	
-	/*public String[] getCityNames() {
-		places.updatePlaces();
+	public ArrayList getCityNames() {
 		return places.returnCities();
-	}*/
+	}
+	
+	public String getAltitude(String city) {
+		return places.returnAltitude(city);
+	}
+	
+	public String getLatitude(String city) {
+		return places.returnLatitude(city);
+	}
+	
+	public String getLongitude(String city) {
+		return places.returnLongitude(city);
+	}
 
 }

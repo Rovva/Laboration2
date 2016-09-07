@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
@@ -23,7 +24,7 @@ import data.Fetcher;
 
 public class Window implements Observer, ActionListener {
 
-	int size_x = 360, size_y = 300;
+	int size_x = 370, size_y = 300;
 	private JLabel city_label = new JLabel("Välj stad:");
 	private JLabel hour_label = new JLabel("Välj timma:");
 	private JComboBox city_choose = new JComboBox();
@@ -39,14 +40,14 @@ public class Window implements Observer, ActionListener {
 	
 	private Fetcher fet;
 	
+	private ArrayList cities_temp;
+	
 	Date currentDate;
 	
 	public Window(Fetcher fet) {
 		
 		this.fet = fet;
 		fet.addObserver(this);
-		
-		String cities_temp[];
 		
 		JFrame frame = new JFrame("Weather");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,12 +71,10 @@ public class Window implements Observer, ActionListener {
 		contentPane.add(temperature_label);
 		contentPane.add(temperature);
 		
-		/*cities_temp = fet.getCityNames();
-		for(int i = 0; i < cities_temp.length; i++) {
-			city_choose.addItem(cities_temp[i]);
-		}*/
-		
-		city_choose.addItem("Skellefteå");
+		cities_temp = fet.getCityNames();
+		for(int i = 0; i < cities_temp.size(); i++) {
+			city_choose.addItem(cities_temp.get(i));
+		}
 		
 		updateHourChoose();
 		updateCacheTime();
@@ -146,7 +145,10 @@ public class Window implements Observer, ActionListener {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		cities_temp = fet.getCityNames();
+		for(int i = 0; i < cities_temp.size(); i++) {
+			city_choose.addItem(cities_temp.get(i));
+		}
 	}
 	
 	

@@ -67,12 +67,21 @@ public class PlaceFetcher {
 		cities.add(city);
 	}
 	
+	ArrayList returnCities() {
+		 return cities;
+	}
+	
 	void clearCities() {
 		cities.clear();
 	}
 	
 	void addAltitude(String alt) {
 		altitude.add(alt);
+	}
+	
+	String returnAltitude(String city) {
+		int i = cities.indexOf(city);
+		return (String) altitude.get(i);
 	}
 	
 	void clearAltitude() {
@@ -83,12 +92,22 @@ public class PlaceFetcher {
 		latitude.add(lat);
 	}
 	
+	String returnLatitude(String city) {
+		int i = cities.indexOf(city);
+		return (String) latitude.get(i);
+	}
+	
 	void clearLatitude() {
 		latitude.clear();
 	}
 	
 	void addLongitude(String lon) {
 		longitude.add(lon);
+	}
+	
+	String returnLongitude(String city) {
+		int i = cities.indexOf(city);
+		return (String) longitude.get(i);
 	}
 	
 	void clearLongitude() {
