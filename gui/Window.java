@@ -43,6 +43,7 @@ public class Window implements Observer, ActionListener {
 	public Window(Fetcher fet) {
 		
 		this.fet = fet;
+		fet.addObserver(this);
 		
 		JFrame frame = new JFrame("Weather");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
