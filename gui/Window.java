@@ -150,7 +150,7 @@ public class Window implements Observer, ActionListener {
 	
 	void updateCacheTime() {
 		for(int i = 1; i <= 60; i++) {
-			cache.addItem(Integer.toString(i));
+			cache.addItem(i);
 		}
 	}
 	
