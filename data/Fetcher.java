@@ -11,7 +11,7 @@ public class Fetcher extends Observable {
 	WeatherFetcher weather;
 	String choosen_city, date, temperature;
 	long fetchTime = 0;
-	int cacheTime = 0;
+	long cacheTime = 0;
 
 	public Fetcher() {
 		places = new PlaceFetcher();
@@ -24,14 +24,15 @@ public class Fetcher extends Observable {
 	public void getTemperature(String city, String time, int cacheTime) {
 		Date tmpDate = new Date();
 		boolean cache;
-		if((fetchTime+cacheTime) > tmpDate.getTime()) {
+		if(this.cacheTime > tmpDate.getTime()) {
 			cache = true;
 		} else {
 			cache = false;
+			this.fetchTime = tmpDate.getTime();
+			this.cacheTime = fetchTime + (cacheTime*60*1000);
 		}
-		fetchTime = tmpDate.getTime();
-		this.cacheTime = cacheTime*60*1000;
-		date = time;
+		
+		this.date = time;
 		temperature = weather.fetchWeather(this.getAltitude(city),
 				this.getLatitude(city),
 				this.getLongitude(city), 

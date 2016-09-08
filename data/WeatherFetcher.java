@@ -1,6 +1,11 @@
 package data;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Writer;
+import java.net.URL;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,12 +32,29 @@ public class WeatherFetcher {
 		if(!cache) {
 			url = "http://api.met.no/weatherapi/locationforecast/1.9/?lat="+latitude+";lon="+longitude+";msl="+altitude;
 			factory = DocumentBuilderFactory.newInstance();
+			try {
+				URL url = new URL("http://api.met.no/weatherapi/locationforecast/1.9/?lat="+latitude+";lon="+longitude+";msl="+altitude);
+				BufferedInputStream bis = new BufferedInputStream(url.openStream());
+				FileOutputStream fis = new FileOutputStream("cache.xml");
+				byte[] buffer = new byte[1024];
+				int count=0;
+				while((count = bis.read(buffer,0,1024)) != -1) {
+		            fis.write(buffer, 0, count);
+				}
+				fis.close();
+				bis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else {
+			url = "cache.xml";
+			factory = DocumentBuilderFactory.newInstance();
 		}
 		try {
-			if(!cache) {
-				DocumentBuilder builder = factory.newDocumentBuilder();
-				doc = builder.parse(url);
-			}
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			doc = builder.parse(url);
 			NodeList timeList = doc.getElementsByTagName("time");
 			NodeList locationList = doc.getElementsByTagName("location");
 			NodeList temperatureList = doc.getElementsByTagName("temperature");
@@ -46,7 +68,9 @@ public class WeatherFetcher {
 						NodeList temperature = times.getElementsByTagName("temperature");
 						Node t = temperature.item(0);
 						Element degrees = (Element) t;
-						return degrees.getAttribute("value");
+						String old = degrees.getAttribute("value");
+						degrees.setAttribute("value", "666");
+						return old;
 					}
 				}
 			}
