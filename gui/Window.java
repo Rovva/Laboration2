@@ -150,6 +150,7 @@ public class Window implements Observer, ActionListener {
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		city_choose.removeAllItems();
 		cities_temp = fet.getCityNames();
 		for(int i = 0; i < cities_temp.size(); i++) {
 			city_choose.addItem(cities_temp.get(i));
