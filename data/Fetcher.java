@@ -9,12 +9,24 @@ public class Fetcher extends Observable {
 	PlaceFetcher places;
 	WeatherFetcher weather;
 	
-	String choosen_city, date;
+	String choosen_city, date, temperature;
 
 	public Fetcher() {
 		places = new PlaceFetcher();
 		places.updatePlaces();
 		weather = new WeatherFetcher();
+		setChanged();
+		notifyObservers();
+	}
+	
+	public void getTemperature(String city, String time) {
+		
+		temperature = weather.fetchWeather(this.getAltitude(city),
+				this.getLatitude(city),
+				this.getLongitude(city), 
+				time);
+		setChanged();
+		notifyObservers();
 	}
 	
 	public ArrayList getCityNames() {

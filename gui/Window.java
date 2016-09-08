@@ -64,6 +64,7 @@ public class Window implements Observer, ActionListener {
 		contentPane.add(cache_label);
 		contentPane.add(cache);
 		contentPane.add(select);
+		select.addActionListener(this);
 		
 		contentPane.add(prognos_label);
 		contentPane.add(choosen_hour_label);
@@ -122,7 +123,7 @@ public class Window implements Observer, ActionListener {
 		long milli = 0;
 		milli = date.getTime();
 		Date temp;
-		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH':00:00'");
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH':00:00Z'");
 		for(int i = 0; i < 24; i++) {
 			temp = new Date(milli);
 			hour_choose.addItem(ft.format(temp));
@@ -139,7 +140,11 @@ public class Window implements Observer, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		
+		String op = arg0.getActionCommand();
+		if(op == "Hämta") {
+			fet.getTemperature((String) city_choose.getSelectedItem(), (String) hour_choose.getSelectedItem());
+			System.out.println("Hämta");
+		}
 	}
 
 	@Override
@@ -149,6 +154,7 @@ public class Window implements Observer, ActionListener {
 		for(int i = 0; i < cities_temp.size(); i++) {
 			city_choose.addItem(cities_temp.get(i));
 		}
+		
 	}
 	
 	

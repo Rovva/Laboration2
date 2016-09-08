@@ -17,7 +17,7 @@ public class WeatherDOM {
 	private static String altitude;
 	private static String latitude;
 	private static String longitude;
-	private static String time = "2016-09-08T16:00:00Z";
+	private static String time = "2016-09-08T20:00:00Z";
 	public static void main(String[] args) {
 		altitude = "70";
 		latitude = "60.10";
