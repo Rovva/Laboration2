@@ -155,6 +155,7 @@ public class Window implements Observer, ActionListener {
 		for(int i = 0; i < cities_temp.size(); i++) {
 			city_choose.addItem(cities_temp.get(i));
 		}
+		temperature.setText(fet.getTemperature()); 
 		
 	}
 	

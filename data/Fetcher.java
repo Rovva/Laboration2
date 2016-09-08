@@ -8,7 +8,6 @@ public class Fetcher extends Observable {
 	String file = "places.xml";
 	PlaceFetcher places;
 	WeatherFetcher weather;
-	
 	String choosen_city, date, temperature;
 
 	public Fetcher() {
@@ -43,6 +42,10 @@ public class Fetcher extends Observable {
 	
 	public String getLongitude(String city) {
 		return places.returnLongitude(city);
+	}
+	
+	public String getTemperature(){
+		return temperature;
 	}
 
 }
