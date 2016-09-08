@@ -24,7 +24,7 @@ import data.Fetcher;
 
 public class Window implements Observer, ActionListener {
 
-	int size_x = 370, size_y = 300;
+	int size_x = 380, size_y = 300;
 	private JLabel city_label = new JLabel("Välj stad:");
 	private JLabel hour_label = new JLabel("Välj timma:");
 	private JComboBox city_choose = new JComboBox();
@@ -156,7 +156,7 @@ public class Window implements Observer, ActionListener {
 			city_choose.addItem(cities_temp.get(i));
 		}
 		temperature.setText(fet.getTemperature()); 
-		
+		choosen_hour.setText(fet.getTime());
 	}
 	
 	

@@ -19,7 +19,7 @@ public class Fetcher extends Observable {
 	}
 	
 	public void getTemperature(String city, String time) {
-		
+		date = time;
 		temperature = weather.fetchWeather(this.getAltitude(city),
 				this.getLatitude(city),
 				this.getLongitude(city), 
@@ -46,6 +46,10 @@ public class Fetcher extends Observable {
 	
 	public String getTemperature(){
 		return temperature;
+	}
+	
+	public String getTime() {
+		return date;
 	}
 
 }
