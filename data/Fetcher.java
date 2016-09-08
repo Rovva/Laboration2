@@ -2,6 +2,7 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Date;
 
 public class Fetcher extends Observable {
 	
@@ -9,6 +10,8 @@ public class Fetcher extends Observable {
 	PlaceFetcher places;
 	WeatherFetcher weather;
 	String choosen_city, date, temperature;
+	long fetchTime = 0;
+	int cacheTime = 0;
 
 	public Fetcher() {
 		places = new PlaceFetcher();
@@ -18,12 +21,21 @@ public class Fetcher extends Observable {
 		notifyObservers();
 	}
 	
-	public void getTemperature(String city, String time) {
+	public void getTemperature(String city, String time, int cacheTime) {
+		Date tmpDate = new Date();
+		boolean cache;
+		if((fetchTime+cacheTime) > tmpDate.getTime()) {
+			cache = true;
+		} else {
+			cache = false;
+		}
+		fetchTime = tmpDate.getTime();
+		this.cacheTime = cacheTime*60*1000;
 		date = time;
 		temperature = weather.fetchWeather(this.getAltitude(city),
 				this.getLatitude(city),
 				this.getLongitude(city), 
-				time);
+				time, cache);
 		setChanged();
 		notifyObservers();
 	}

@@ -142,8 +142,7 @@ public class Window implements Observer, ActionListener {
 		// TODO Auto-generated method stub
 		String op = arg0.getActionCommand();
 		if(op == "Hämta") {
-			fet.getTemperature((String) city_choose.getSelectedItem(), (String) hour_choose.getSelectedItem());
-			System.out.println("Hämta");
+			fet.getTemperature((String) city_choose.getSelectedItem(), (String) hour_choose.getSelectedItem(), (int)cache.getSelectedItem());
 		}
 	}
 
