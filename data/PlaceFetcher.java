@@ -14,9 +14,9 @@ import java.io.*;
 
 public class PlaceFetcher {
 
-	File file;
+	File file; // ?
 	ArrayList cities, altitude, latitude, longitude;
-	Document placesDoc;
+	Document placesDoc; // ?
 	DocumentBuilderFactory factory;
 	
 	/**

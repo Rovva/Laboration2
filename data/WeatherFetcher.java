@@ -17,6 +17,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * WeatherFetcher will connect and request an XML with appropriate configurations
+ * from a weather API, to parse through and receive temperature in a specific city.
+ * 
+ */
+
 public class WeatherFetcher {
 	
 	DocumentBuilderFactory factory;
@@ -28,8 +34,22 @@ public class WeatherFetcher {
 	
 	String url;
 	
+	/**
+	 * fetchWeather
+	 * 
+	 * @param altitude The altitude to send
+	 * @param latitude The latitude to send
+	 * @param longitude The longiture to send
+	 * @param time The time we are interested in
+	 * @param cache Are we are using our cached information? True/False
+	 * @return Returns the temperature.
+	 * 
+	 */
+	
 	String fetchWeather(String altitude, String latitude, String longitude, String time, boolean cache) {
-		if(!cache) {
+		
+		
+		if(!cache) {	//Is the aging time over? 
 			url = "http://api.met.no/weatherapi/locationforecast/1.9/?lat="+latitude+";lon="+longitude+";msl="+altitude;
 			factory = DocumentBuilderFactory.newInstance();
 			try {
