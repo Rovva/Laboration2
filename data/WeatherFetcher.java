@@ -54,21 +54,21 @@ public class WeatherFetcher {
 			factory = DocumentBuilderFactory.newInstance();
 			try {
 				URL url = new URL("http://api.met.no/weatherapi/locationforecast/1.9/?lat="+latitude+";lon="+longitude+";msl="+altitude);
-				BufferedInputStream bis = new BufferedInputStream(url.openStream());
-				FileOutputStream fis = new FileOutputStream("cache.xml");
-				byte[] buffer = new byte[1024];
-				int count=0;
-				while((count = bis.read(buffer,0,1024)) != -1) {
-		            fis.write(buffer, 0, count);
+				BufferedInputStream bis = new BufferedInputStream(url.openStream()); // Creates a BufferedInputStream which saves the argument for later use
+				FileOutputStream fis = new FileOutputStream("cache.xml"); //Output stream for writing into cache.xml
+				byte[] buffer = new byte[1024];  //The amount the buffer can hold.
+				int count=0;					 
+				while((count = bis.read(buffer,0,1024)) != -1) { //Stop looping when the inputstream reaches -1
+		            fis.write(buffer, 0, count); 				//Writes appropriate bit to the buffer
 				}
-				fis.close();
-				bis.close();
+				fis.close();									//Stop the output stream					
+				bis.close();									//Stop the input stream
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-		} else {
+		} else {  //Else, read from our previously downloaded .xml
 			url = "cache.xml";
 			factory = DocumentBuilderFactory.newInstance();
 		}
