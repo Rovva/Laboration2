@@ -1,3 +1,11 @@
+/**
+ * 
+ * @author Christoffer Rova and Jonas Roininen
+ * 
+ *  Väderdataklient
+ *
+ */
+
 package main;
 
 import gui.Window;
