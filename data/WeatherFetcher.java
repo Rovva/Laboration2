@@ -19,7 +19,7 @@ import org.xml.sax.SAXException;
 
 /**
  * WeatherFetcher will connect and request an XML with appropriate configurations
- * from a weather API, to parse through and receive temperature in a specific city.
+ * from a weather API, to parse through and receive temperature from a specific city.
  * 
  */
 
@@ -73,23 +73,23 @@ public class WeatherFetcher {
 			factory = DocumentBuilderFactory.newInstance();
 		}
 		try {
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			doc = builder.parse(url);
-			NodeList timeList = doc.getElementsByTagName("time");
-			NodeList locationList = doc.getElementsByTagName("location");
-			NodeList temperatureList = doc.getElementsByTagName("temperature");
+			DocumentBuilder builder = factory.newDocumentBuilder();				//Used to store XML instances
+			doc = builder.parse(url);											//The XML which the DocumentBuilder will parse from. (the URL or cache)
+			NodeList timeList = doc.getElementsByTagName("time");				//Will store tagnames "time" to timeList
+			NodeList locationList = doc.getElementsByTagName("location");  		//Will store tagnames "location" to locationList
+			NodeList temperatureList = doc.getElementsByTagName("temperature");	//Will store tagnames "temperature" to temperatureList
 			for(int i = 0; i < timeList.getLength(); i++){
 				Node l = timeList.item(i);
-				if (l.getNodeType()==Node.ELEMENT_NODE){
-					Element times = (Element) l;
-					String temp_from = times.getAttribute("from");
-					String temp_to = times.getAttribute("to");
-					if(temp_from.equals(time) && temp_to.equals(time)) {
-						NodeList temperature = times.getElementsByTagName("temperature");
+				if (l.getNodeType()==Node.ELEMENT_NODE){						//If the item in current index, is of type; ELEMENT_NODE...
+					Element times = (Element) l;				
+					String temp_from = times.getAttribute("from");							//temp_from used for later time comparison
+					String temp_to = times.getAttribute("to");								//temp_to used for later time comparison
+					if(temp_from.equals(time) && temp_to.equals(time)) {					//Is our requested time's, temp_from the same as temp_to? (We are interested in these values)
+						NodeList temperature = times.getElementsByTagName("temperature");	//Will store tagnames "temperature" to the list, temperature
 						Node t = temperature.item(0);
 						Element degrees = (Element) t;
-						String old = degrees.getAttribute("value");
-						degrees.setAttribute("value", "666");
+						String old = degrees.getAttribute("value");		//We want the value from temperature as a string
+						degrees.setAttribute("value", "666");			//?
 						return old;
 					}
 				}
