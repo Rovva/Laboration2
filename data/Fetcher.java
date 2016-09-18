@@ -50,10 +50,11 @@ public class Fetcher extends Observable {
 		boolean cache;
 		
 		//Checks whether enough time has passed to get temperature from the weather api or cache.
-		if(this.cacheTime > tmpDate.getTime()) {	
+		if(this.cacheTime > tmpDate.getTime() && this.choosen_city.equals(city)) {	
 			cache = true;
 		} else {
 			cache = false;
+			this.choosen_city = city;
 			this.fetchTime = tmpDate.getTime();					//the time we fetch data
 			this.cacheTime = fetchTime + (cacheTime*60*1000);	//Adds the current time with the cacheTime in milliseconds.
 		}
@@ -141,6 +142,15 @@ public class Fetcher extends Observable {
 	
 	public String getTime() {
 		return date;
+	}
+	
+	/**
+	 * getChoosenCity
+	 * @return returns the city that was choosen
+	 */
+	
+	public String getChoosenCity() {
+		return choosen_city;
 	}
 
 }

@@ -32,7 +32,7 @@ import data.Fetcher;
 
 public class Window implements Observer, ActionListener {
 
-	int size_x = 380, size_y = 300;										//The initial size of the window
+	int size_x = 400, size_y = 300;										//The initial size of the window
 	private JLabel city_label = new JLabel("Välj stad:");
 	private JLabel hour_label = new JLabel("Välj timma:");
 	private JComboBox city_choose = new JComboBox();					//Creates a new dropdown menu for cities
@@ -200,6 +200,7 @@ public class Window implements Observer, ActionListener {
 		for(int i = 0; i < cities_temp.size(); i++) {
 			city_choose.addItem(cities_temp.get(i));
 		}
+		city_choose.setSelectedItem(fet.getChoosenCity());
 		temperature.setText(fet.getTemperature()); 
 		choosen_hour.setText(fet.getTime());
 	}
