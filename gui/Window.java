@@ -173,8 +173,9 @@ public class Window implements Observer, ActionListener {
 	/**
 	 * actionPerformed
 	 * 
-	 * @param arg0 Will check if the action is: "Hämta"...
 	 * Sends our configurations to fetch temperature
+	 * 
+	 * @param arg0 Will check if the action is: "Hämta"...
 	 * 
 	 */
 	

@@ -1,6 +1,9 @@
 /**
  * 
  * @author Christoffer Rova and Jonas Roininen
+ * @version 0.9
+ * @since 2016-09-19
+ * @docRoot
  * 
  *  Väderdataklient
  *
@@ -9,7 +12,6 @@
 package main;
 
 import gui.Window;
-import controller.EventHandler;
 import data.Fetcher;
 
 public class Main {

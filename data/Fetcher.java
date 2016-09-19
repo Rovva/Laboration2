@@ -35,12 +35,14 @@ public class Fetcher extends Observable {
 	/**
 	 * getTemperature
 	 * 
-	 * @param city 			The city we want to fetch temperature from
-	 * @param time 			The hour we want to fetch it...
-	 * @param cacheTime 	The cacheTime we have set.
 	 * 
 	 * This method will check whether to fetch data from
 	 * the cache or from the Weather api, and do so.
+	 * 
+	 * 
+	 * @param city 			The city we want to fetch temperature from
+	 * @param time 			The hour we want to fetch it...
+	 * @param cacheTime 	The cacheTime we have set.
 	 * 
 	 * 
 	 */
@@ -146,7 +148,7 @@ public class Fetcher extends Observable {
 	
 	/**
 	 * getChoosenCity
-	 * @return returns the city that was choosen
+	 * @return returns the city that was choosen last time
 	 */
 	
 	public String getChoosenCity() {
