@@ -51,7 +51,11 @@ public class Fetcher extends Observable {
 		Date tmpDate = new Date(); 					//The date upon getting Temperature
 		boolean cache;
 		
-		//Checks whether enough time has passed to get temperature from the weather api or cache.
+		
+		//Checks whether enough time has passed AND 
+		//if the city is the same as the selected one in the GUI
+		//to get temperature from the weather api or cache.
+		
 		if(this.cacheTime > tmpDate.getTime() && this.choosen_city.equals(city)) {	
 			cache = true;
 		} else {
